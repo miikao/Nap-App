@@ -7,17 +7,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
         >
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Temperature"
-            android:id="@+id/main_tv_label" android:layout_centerHorizontal="true" android:layout_alignParentTop="true"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="N/A"
-            android:id="@+id/main_tv_temperature" android:layout_centerHorizontal="true"
-            android:layout_below="@+id/main_tv_label"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,4 +38,40 @@
             android:layout_alignParentBottom="true"
             android:layout_toRightOf="@+id/main_tv_connection_status_label"
             />
+
+    <TextView
+        android:id="@+id/main_tv_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/main_tv_label"
+        android:layout_below="@+id/main_tv_label"
+        android:layout_marginLeft="26dp"
+        android:text="N/A" />
+
+    <TextView
+        android:id="@+id/main_tv_colortemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/main_tv_colorlabel"
+        android:layout_below="@+id/main_tv_colorlabel"
+        android:layout_marginRight="26dp"
+        android:text="N/A" />
+
+    <TextView
+        android:id="@+id/main_tv_colorlabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/main_btn_measure"
+        android:text="Color temp" />
+
+    <TextView
+        android:id="@+id/main_tv_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/main_tv_colortemp"
+        android:layout_alignRight="@+id/main_btn_connect"
+        android:layout_marginRight="44dp"
+        android:text="Temperature" />
+
 </RelativeLayout>
