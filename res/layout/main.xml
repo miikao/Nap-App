@@ -1,43 +1,44 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
-    tools:context="com.momi.napapp.MainActivity"
-    tools:ignore="MergeRootFrame"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-        >
+    android:orientation="vertical"
+    tools:context="com.momi.napapp.MainActivity"
+    tools:ignore="MergeRootFrame" >
+
     <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Measure"
-            android:id="@+id/main_btn_measure" android:layout_centerHorizontal="true" android:layout_centerVertical="true"/>
+        android:id="@+id/main_btn_connect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_btn_measure"
+        android:layout_centerHorizontal="true"
+        android:text="Connect" />
+
     <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Connect"
-            android:id="@+id/main_btn_connect" android:layout_centerHorizontal="true"
-            android:layout_below="@+id/main_btn_measure"/>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Disconnect"
-            android:id="@+id/main_btn_disconnect" android:layout_centerHorizontal="true"
-            android:layout_below="@+id/main_btn_connect"/>
+        android:id="@+id/main_btn_disconnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_btn_connect"
+        android:layout_centerHorizontal="true"
+        android:text="Disconnect" />
+
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Connection Status: "
-            android:id="@+id/main_tv_connection_status_label" android:layout_alignParentLeft="true" android:layout_marginLeft="6dp"
-            android:layout_alignParentBottom="true"/>
+        android:id="@+id/main_tv_connection_status_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="6dp"
+        android:text="Connection Status: " />
+
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Not Connected"
-            android:id="@+id/main_tv_connection_status"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/main_tv_connection_status_label"
-            />
+        android:id="@+id/main_tv_connection_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/main_tv_connection_status_label"
+        android:text="Not Connected" />
 
     <TextView
         android:id="@+id/main_tv_temperature"
@@ -73,5 +74,38 @@
         android:layout_alignRight="@+id/main_btn_connect"
         android:layout_marginRight="44dp"
         android:text="Temperature" />
+
+
+    <Button
+        android:id="@+id/main_btn_measure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/main_btn_connect"
+        android:layout_marginTop="68dp"
+        android:text="Measure" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearLayout1"
+        android:layout_below="@+id/main_btn_disconnect"
+        android:layout_marginTop="22dp" >
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sound Level:"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+           android:id="@id/text_sounddb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
 
 </RelativeLayout>
