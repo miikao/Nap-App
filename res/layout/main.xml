@@ -7,22 +7,6 @@
     tools:context="com.momi.napapp.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-    <Button
-        android:id="@+id/main_btn_connect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/main_btn_measure"
-        android:layout_centerHorizontal="true"
-        android:text="Connect" />
-
-    <Button
-        android:id="@+id/main_btn_disconnect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/main_btn_connect"
-        android:layout_centerHorizontal="true"
-        android:text="Disconnect" />
-
     <TextView
         android:id="@+id/main_tv_connection_status_label"
         android:layout_width="wrap_content"
@@ -40,51 +24,8 @@
         android:layout_toRightOf="@+id/main_tv_connection_status_label"
         android:text="Not Connected" />
 
-    <TextView
-        android:id="@+id/main_tv_temperature"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/main_tv_label"
-        android:layout_below="@+id/main_tv_label"
-        android:layout_marginLeft="26dp"
-        android:text="N/A" />
-
-    <TextView
-        android:id="@+id/main_tv_colortemp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/main_tv_colorlabel"
-        android:layout_below="@+id/main_tv_colorlabel"
-        android:layout_marginRight="26dp"
-        android:text="N/A" />
-
-    <TextView
-        android:id="@+id/main_tv_colorlabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/main_btn_measure"
-        android:text="Color temp" />
-
-    <TextView
-        android:id="@+id/main_tv_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/main_tv_colortemp"
-        android:layout_alignRight="@+id/main_btn_connect"
-        android:layout_marginRight="44dp"
-        android:text="Temperature" />
-
-
-    <Button
-        android:id="@+id/main_btn_measure"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/main_btn_connect"
-        android:layout_marginTop="68dp"
-        android:text="Measure" />
-
     <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/linearLayout1"
@@ -95,17 +36,107 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sound Level:"
             android:gravity="right"
+            android:text="Sound Level:"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
-           android:id="@id/text_sounddb"
+            android:id="@id/text_sounddb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:text="Large Text"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/main_btn_disconnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/main_btn_connect"
+        android:layout_alignBottom="@+id/main_btn_connect"
+        android:layout_alignLeft="@+id/main_tv_connection_status"
+        android:layout_marginLeft="32dp"
+        android:text="Disconnect" />
+
+    <Button
+        android:id="@+id/main_btn_measure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/main_btn_connect"
+        android:layout_marginTop="65dp"
+        android:text="Measure" />
+
+    <Button
+        android:id="@+id/main_btn_connect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/main_tv_connection_status_label"
+        android:layout_below="@+id/main_btn_measure"
+        android:layout_marginTop="26dp"
+        android:text="Connect" />
+
+    <Button
+        android:id="@+id/main_btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/main_btn_measure"
+        android:layout_alignBottom="@+id/main_btn_measure"
+        android:layout_alignRight="@+id/main_btn_disconnect"
+        android:text="Save values" />
+
+    <TextView
+        android:id="@+id/main_tv_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/main_tv_colortemp"
+        android:layout_alignLeft="@+id/main_tv_connection_status_label"
+        android:text="Temperature" />
+
+    <TextView
+        android:id="@+id/main_tv_colorlabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="17dp"
+        android:layout_toRightOf="@+id/main_tv_label"
+        android:text="Color temp" />
+
+    <TextView
+        android:id="@+id/main_tv_lintlabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/main_tv_colorlabel"
+        android:layout_alignBottom="@+id/main_tv_colorlabel"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="26dp"
+        android:text="Light intensity" />
+
+    <TextView
+        android:id="@+id/main_tv_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/main_tv_colortemp"
+        android:layout_alignBottom="@+id/main_tv_colortemp"
+        android:layout_alignLeft="@+id/main_tv_label"
+        android:text="N/A" />
+
+    <TextView
+        android:id="@+id/main_tv_colortemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/main_tv_intensity"
+        android:layout_alignBottom="@+id/main_tv_intensity"
+        android:layout_alignLeft="@+id/main_tv_colorlabel"
+        android:text="N/A" />
+
+    <TextView
+        android:id="@+id/main_tv_intensity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/main_tv_lintlabel"
+        android:layout_below="@+id/main_tv_lintlabel"
+        android:text="N/A" />
 
 </RelativeLayout>

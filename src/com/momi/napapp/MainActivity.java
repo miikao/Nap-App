@@ -3,14 +3,19 @@ package com.momi.napapp;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
-import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Calendar;
 
+
+import com.momi.napapp.Table.FeedEntry;
+import com.momi.napapp.Table.FeedReaderDbHelper;
 import com.sensorcon.sensordrone.DroneEventHandler;
 import com.sensorcon.sensordrone.DroneEventObject;
 import com.sensorcon.sensordrone.android.Drone;
@@ -21,13 +26,26 @@ public class MainActivity extends Activity {
 	Button btnConnect;
 	Button btnDisconnect;
 	Button btnMeasure;
+	Button btnSave;
 	TextView tvStatus;
 	TextView tvTemperature;
 	TextView rgbcTemperature;
+	TextView lightIntensity;
 
 	Drone myDrone;
 	DroneEventHandler myDroneEventHandler;
 	DroneConnectionHelper myHelper;
+	FeedReaderDbHelper mDbHelper;
+
+	// needed to transfer readings to table
+
+	int id = 0;
+	String intensity;
+	String temp;
+	String rgbtemp;
+	// no idea if this works
+	String date = java.text.DateFormat.getDateTimeInstance().format(
+			Calendar.getInstance().getTime());
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +54,13 @@ public class MainActivity extends Activity {
 
 		myDrone = new Drone();
 		myHelper = new DroneConnectionHelper();
+		mDbHelper = new FeedReaderDbHelper(getContext());
 
 		tvStatus = (TextView) findViewById(R.id.main_tv_connection_status);
 
 		tvTemperature = (TextView) findViewById(R.id.main_tv_temperature);
 		rgbcTemperature = (TextView) findViewById(R.id.main_tv_colortemp);
+		lightIntensity = (TextView) findViewById(R.id.main_tv_intensity);
 
 		btnConnect = (Button) findViewById(R.id.main_btn_connect);
 		btnConnect.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +115,31 @@ public class MainActivity extends Activity {
 			}
 		});
 
+		btnSave = (Button) findViewById(R.id.main_btn_save);
+		btnSave.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (!myDrone.isConnected) {
+					genericDialog("Whoa!", "Connect to a Sensordrone first!");
+				} else {
+					// TODO Auto-generated method stub
+					++id;
+					SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+					ContentValues values = new ContentValues();
+					values.put(FeedEntry.COLUMN_NAME_ENTRY_ID, id);
+					values.put(FeedEntry.COLUMN_NAME_DATE, date);
+					values.put(FeedEntry.COLUMN_NAME_TEMP, temp);
+					values.put(FeedEntry.COLUMN_NAME_CTEMP, rgbtemp);
+					values.put(FeedEntry.COLUMN_NAME_LINT, intensity);
+
+					long newRowId;
+					newRowId = db.insert(FeedEntry.TABLE_NAME,
+							null, values);
+				}
+			}
+		});
+
 		myDroneEventHandler = new DroneEventHandler() {
 			@Override
 			public void parseEvent(DroneEventObject droneEventObject) {
@@ -127,18 +172,21 @@ public class MainActivity extends Activity {
 				} else if (droneEventObject
 						.matches(DroneEventObject.droneEventType.TEMPERATURE_MEASURED)) {
 
-					String temp = String.format("%.2f \u00B0C",
+					temp = String.format("%.2f \u00B0C",
 							myDrone.temperature_Celsius);
 					updateTextViewFromUI(tvTemperature, temp);
 
-					uiToast("Temperature updated!");
+					uiToast("Measurements updated!");
 
 				} else if (droneEventObject
 						.matches(DroneEventObject.droneEventType.RGBC_MEASURED)) {
 
-					String rgbtemp = String.format("%.2f \u00B0C",
+					rgbtemp = String.format("%.1f K",
 							myDrone.rgbcColorTemperature);
 					updateTextViewFromUI(rgbcTemperature, rgbtemp);
+
+					intensity = String.format("%.1f lux", myDrone.rgbcLux);
+					updateTextViewFromUI(lightIntensity, intensity);
 
 				} else if (droneEventObject
 						.matches(DroneEventObject.droneEventType.TEMPERATURE_DISABLED)) {
@@ -197,17 +245,17 @@ public class MainActivity extends Activity {
 			}
 		});
 	}
-	
-    @Override
-    protected void onStart() {
-        super.onStart();
-        startActivity(new Intent(MainActivity.this, SoundActivity.class));
-        finish();
-    }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
+//	 @Override
+//	 protected void onStart() {
+//	 super.onStart();
+//	 startActivity(new Intent(MainActivity.this, SoundActivity.class));
+//	 finish();
+//	 }
+//	
+//	@Override
+//	protected void onDestroy() {
+//		super.onDestroy();
+//	}
 
 }

@@ -30,6 +30,7 @@ public class SoundActivity extends Activity {
 		mSoundDB = (TextView) findViewById(R.id.text_sounddb);
 	}
 
+	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 
@@ -37,10 +38,12 @@ public class SoundActivity extends Activity {
 			System.exit(0);
 	}
 
+	@Override
 	protected void onResume() {
 		super.onResume();
 	}
 
+	@Override
 	protected void onStart() {
 		super.onStart();
 		mRecorder.RecorderInit();
@@ -49,6 +52,7 @@ public class SoundActivity extends Activity {
 		mSoundPlay.a();
 	}
 
+	@Override
 	protected void onStop() {
 		super.onStop();
 		mRecorder.RecorderRel();
