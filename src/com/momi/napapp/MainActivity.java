@@ -36,6 +36,7 @@ public class MainActivity extends Activity {
 	DroneEventHandler myDroneEventHandler;
 	DroneConnectionHelper myHelper;
 	FeedReaderDbHelper mDbHelper;
+	Table table;
 
 	// needed to transfer readings to table
 
@@ -55,7 +56,8 @@ public class MainActivity extends Activity {
 		myDrone = new Drone();
 		myHelper = new DroneConnectionHelper();
 		mDbHelper = new FeedReaderDbHelper(getBaseContext());
-
+		table = new Table();
+		
 		tvStatus = (TextView) findViewById(R.id.main_tv_connection_status);
 
 		tvTemperature = (TextView) findViewById(R.id.main_tv_temperature);
@@ -127,7 +129,7 @@ public class MainActivity extends Activity {
 					SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
 					ContentValues values = new ContentValues();
-					values.put(FeedEntry.COLUMN_NAME_ENTRY_ID, id);
+//					values.put(FeedEntry.COLUMN_NAME_ENTRY_ID, id);
 					values.put(FeedEntry.COLUMN_NAME_DATE, date);
 					values.put(FeedEntry.COLUMN_NAME_TEMP, temp);
 					values.put(FeedEntry.COLUMN_NAME_CTEMP, rgbtemp);
@@ -136,7 +138,9 @@ public class MainActivity extends Activity {
 					long newRowId;
 					newRowId = db.insert(FeedEntry.TABLE_NAME,
 							null, values);
+					db.close();
 				}
+				
 				uiToast("Values saved!");
 			}
 		});

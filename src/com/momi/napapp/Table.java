@@ -18,15 +18,23 @@ public final class Table {
 
 	private static final String TEXT_TYPE = " TEXT";
 	private static final String COMMA_SEP = ",";
-	static final String SQL_CREATE_ENTRIES =
-	    "CREATE TABLE " + FeedEntry.TABLE_NAME + " (" +
-	    FeedEntry._ID + " INTEGER PRIMARY KEY," +
-	    FeedEntry.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + COMMA_SEP +
-	    FeedEntry.COLUMN_NAME_DATE + TEXT_TYPE + COMMA_SEP +
-	    FeedEntry.COLUMN_NAME_TEMP + TEXT_TYPE + COMMA_SEP +
-	    FeedEntry.COLUMN_NAME_CTEMP + TEXT_TYPE + COMMA_SEP +
-	    FeedEntry.COLUMN_NAME_LINT + TEXT_TYPE + COMMA_SEP +
-	    " )";
+	
+
+	
+	static String SQL_CREATE_ENTRIES = 
+            String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY, %s TEXT, %s TEXT, %s TEXT, %s TEXT);",
+                    FeedEntry.TABLE_NAME, FeedEntry.COLUMN_NAME_ENTRY_ID, FeedEntry.COLUMN_NAME_DATE, FeedEntry.COLUMN_NAME_TEMP,
+                    FeedEntry.COLUMN_NAME_CTEMP, FeedEntry.COLUMN_NAME_LINT);
+	
+//	static final String SQL_CREATE_ENTRIES =
+//	    "CREATE TABLE " + FeedEntry.TABLE_NAME + " (" +
+//	    FeedEntry._ID + " INTEGER PRIMARY KEY," +
+//	    FeedEntry.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + COMMA_SEP +
+//	    FeedEntry.COLUMN_NAME_DATE + TEXT_TYPE + COMMA_SEP +
+//	    FeedEntry.COLUMN_NAME_TEMP + TEXT_TYPE + COMMA_SEP +
+//	    FeedEntry.COLUMN_NAME_CTEMP + TEXT_TYPE + COMMA_SEP +
+//	    FeedEntry.COLUMN_NAME_LINT + TEXT_TYPE +
+//	    " )";
 
 	static final String SQL_DELETE_ENTRIES =
 	    "DROP TABLE IF EXISTS " + FeedEntry.TABLE_NAME;
