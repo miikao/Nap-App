@@ -10,7 +10,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "tableSet";
     
-	private static final String TABLE_VALUES = "values";
+	private static final String TABLE_VALUES = "values666";
 	
 	private static final String KEY_ID = "id";
 	private static final String NAME_DATE = "date";
