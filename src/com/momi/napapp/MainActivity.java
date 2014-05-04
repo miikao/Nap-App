@@ -15,7 +15,7 @@ import java.util.Calendar;
 
 
 import com.momi.napapp.Table.FeedEntry;
-import com.momi.napapp.Table.FeedReaderDbHelper;
+
 import com.sensorcon.sensordrone.DroneEventHandler;
 import com.sensorcon.sensordrone.DroneEventObject;
 import com.sensorcon.sensordrone.android.Drone;
@@ -54,7 +54,7 @@ public class MainActivity extends Activity {
 
 		myDrone = new Drone();
 		myHelper = new DroneConnectionHelper();
-		mDbHelper = new FeedReaderDbHelper(getContext());
+		mDbHelper = new FeedReaderDbHelper(getBaseContext());
 
 		tvStatus = (TextView) findViewById(R.id.main_tv_connection_status);
 
@@ -137,6 +137,7 @@ public class MainActivity extends Activity {
 					newRowId = db.insert(FeedEntry.TABLE_NAME,
 							null, values);
 				}
+				uiToast("Values saved!");
 			}
 		});
 
