@@ -3,18 +3,17 @@ package com.momi.napapp;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.ContentValues;
 import android.content.DialogInterface;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Log;
 import java.util.Calendar;
 
 
-import com.momi.napapp.Table.FeedEntry;
+
 
 import com.sensorcon.sensordrone.DroneEventHandler;
 import com.sensorcon.sensordrone.DroneEventObject;
@@ -35,12 +34,12 @@ public class MainActivity extends Activity {
 	Drone myDrone;
 	DroneEventHandler myDroneEventHandler;
 	DroneConnectionHelper myHelper;
-	FeedReaderDbHelper mDbHelper;
-	Table table;
+	
+	DatabaseHandler mDbHelper;
+
 
 	// needed to transfer readings to table
 
-	int id = 0;
 	String intensity;
 	String temp;
 	String rgbtemp;
@@ -55,8 +54,8 @@ public class MainActivity extends Activity {
 
 		myDrone = new Drone();
 		myHelper = new DroneConnectionHelper();
-		mDbHelper = new FeedReaderDbHelper(getBaseContext());
-		table = new Table();
+		mDbHelper = new DatabaseHandler(this);
+
 		
 		tvStatus = (TextView) findViewById(R.id.main_tv_connection_status);
 
@@ -124,24 +123,12 @@ public class MainActivity extends Activity {
 				if (!myDrone.isConnected) {
 					genericDialog("Whoa!", "Connect to a Sensordrone first!");
 				} else {
-					// TODO Auto-generated method stub
-					++id;
-					SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-					ContentValues values = new ContentValues();
-//					values.put(FeedEntry.COLUMN_NAME_ENTRY_ID, id);
-					values.put(FeedEntry.COLUMN_NAME_DATE, date);
-					values.put(FeedEntry.COLUMN_NAME_TEMP, temp);
-					values.put(FeedEntry.COLUMN_NAME_CTEMP, rgbtemp);
-					values.put(FeedEntry.COLUMN_NAME_LINT, intensity);
-
-					long newRowId;
-					newRowId = db.insert(FeedEntry.TABLE_NAME,
-							null, values);
-					db.close();
+					Log.d("Insert: ", "Inserting .."); 
+					mDbHelper.saveReadings(date, temp, rgbtemp, intensity);
+					
+					uiToast("Values saved!");
 				}
-				
-				uiToast("Values saved!");
 			}
 		});
 

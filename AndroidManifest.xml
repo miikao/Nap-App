@@ -9,7 +9,6 @@
         android:targetSdkVersion="19" />
     <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="19"/>
 	<uses-permission android:name="android.permission.RECORD_AUDIO"/>
-	<permission></permission>
 	
     <application
         android:allowBackup="true"
