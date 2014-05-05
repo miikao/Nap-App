@@ -139,4 +139,15 @@
         android:layout_below="@+id/main_tv_lintlabel"
         android:text="N/A" />
 
+    <Button
+        android:id="@+id/button1"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/main_tv_colorlabel"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginTop="56dp"
+        android:text="Click Me" 
+        android:onClick="gotoActivity"/>
+
 </RelativeLayout>
