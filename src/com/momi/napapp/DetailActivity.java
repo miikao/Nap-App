@@ -54,7 +54,7 @@ public class DetailActivity extends Activity {
         tbrow0.addView(tv4);
         
         TextView tv5 = new TextView(this);
-        tv5.setText(" Location ");
+        tv5.setText(" Room ");
         tv5.setTextColor(Color.WHITE);
         tbrow0.addView(tv5);
         
