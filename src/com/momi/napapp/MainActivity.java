@@ -10,11 +10,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Log;
 
 import java.util.Calendar;
+
 
 
 
@@ -42,6 +44,9 @@ public class MainActivity extends Activity {
 	private Recorder mRecorder;
 	private SoundPlay mSoundPlay;
 	private Handler mHandler = new Handler();
+	
+	AlertDialog.Builder alert;
+	String place;
 	
 	private Runnable mUpdateTimer = new Runnable() { 
 		@Override
@@ -123,6 +128,7 @@ public class MainActivity extends Activity {
 				if (myDrone.isConnected) {
 					myDrone.measureTemperature();
 					myDrone.measureRGBC();
+					alert.show();
 				} else if (myDrone.isConnected && !myDrone.temperatureStatus) {
 
 					genericDialog("Whoa!",
@@ -283,6 +289,16 @@ public class MainActivity extends Activity {
 		//Causes the Runnable r to be added to the message queue, to be run after the specified amount of time elapses.
 		mHandler.postDelayed(mUpdateTimer, 200L);
 		mSoundPlay.a();
+		alert = new AlertDialog.Builder(this);
+		alert.setTitle("location");
+		alert.setMessage("set name of location");
+		final EditText input = new EditText(this);
+		alert.setView(input);
+		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+			  place = input.getText().toString();
+			}
+		});
 	}
 
 	@Override
