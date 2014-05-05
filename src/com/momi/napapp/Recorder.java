@@ -23,7 +23,7 @@ public class Recorder {
 
 	public void RecorderInit() {
 		float bak = new CalAvg().Cal(3.0f);
-		Log.d("SoundActivity", String.valueOf(bak));
+		Log.d("MainActivity", String.valueOf(bak));
 
 		if (mRecorder != null)
 			return;
@@ -75,10 +75,10 @@ public class Recorder {
 
 		if (f1 > 0.0F) {
 			f2 = (float) (20.0D * Math.log10(f1));
-			Log.d("SoundActivity", "SoundDB: " + f2);
+			Log.d("MainActivity", "SoundDB: " + f2);
 		}
 
-		localTextView = SoundActivity.mSoundDB;
+		localTextView = MainActivity.mSoundDB;
 		localTextView.setText(Math.round(f2) + " DB");
 	}
 

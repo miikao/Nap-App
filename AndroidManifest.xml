@@ -27,11 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.momi.napapp.SoundActivity" >
-        </activity>
-        <activity
-            android:name="com.momi.napapp.DetailActivity"
-		>
+        
+        <activity android:name="com.momi.napapp.DetailActivity">
         </activity>
     </application>
 
