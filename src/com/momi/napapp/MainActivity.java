@@ -13,16 +13,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.text.format.DateFormat;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
-
-
-
-
-
-
+import java.util.Date;
 
 import com.sensorcon.sensordrone.DroneEventHandler;
 import com.sensorcon.sensordrone.DroneEventObject;
@@ -68,8 +64,13 @@ public class MainActivity extends Activity {
 	String temp;
 	String rgbtemp;
 	// no idea if this works
-	String date = java.text.DateFormat.getDateTimeInstance().format(
-			Calendar.getInstance().getTime());
+	//String date = java.text.DateFormat.getDateTimeInstance().format(
+	//		Calendar.getInstance().getTime());
+	SimpleDateFormat df = new SimpleDateFormat("dd.MM HH:mm");
+	Date today = (Date) Calendar.getInstance().getTime();    
+	String date = df.format(today);
+	//String date = java.text.DateFormat.getDateTimeInstance().format(
+		//	Calendar.getInstance().getTime());
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
