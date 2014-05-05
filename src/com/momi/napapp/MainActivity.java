@@ -153,8 +153,8 @@ public class MainActivity extends Activity {
 				} else {
 
 					Log.d("Insert: ", "Inserting .."); 
-					mDbHelper.saveReadings(date, temp, rgbtemp, intensity);
-					Log.d("database output", mDbHelper.getReading(1).toString());
+					mDbHelper.saveReadings(date, place, mSoundDB.toString(), temp, rgbtemp, intensity);
+					
 					
 					uiToast("Values saved!");
 				}

@@ -10,13 +10,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 	private static final String DATABASE_NAME = "tableSet";
 
 	private static final String TABLE_VALUES = "values666";
 
 	private static final String KEY_ID = "id";
 	private static final String NAME_DATE = "date";
+	private static final String NAME_LOC = "location";
+	private static final String NAME_SOUND = "sound";
 	private static final String NAME_TEMP = "temp";
 	private static final String NAME_CTEMP = "rgbtemp";
 	private static final String NAME_LINT = "intensity";
@@ -35,8 +37,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		String CREATE_VALUES_TABLE = "CREATE TABLE " + TABLE_VALUES + "("
 				+ KEY_ID + " INTEGER PRIMARY KEY," + NAME_DATE + " TEXT,"
-				+ NAME_TEMP + " TEXT," + NAME_CTEMP + " TEXT," + NAME_LINT
-				+ " TEXT" + ")";
+				+ NAME_LOC + " TEXT," + NAME_SOUND + " TEXT," + NAME_TEMP
+				+ " TEXT," + NAME_CTEMP + " TEXT," + NAME_LINT + " TEXT" + ")";
 
 		db.execSQL(CREATE_VALUES_TABLE);
 	}
@@ -57,12 +59,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	}
 
 	// saves the current sensor info into the table
-	public void saveReadings(String date, String temp, String rgbtemp,
+	public void saveReadings(String date, String location, String sound, String temp, String rgbtemp,
 			String intensity) {
 		SQLiteDatabase db = this.getWritableDatabase();
 
 		ContentValues values = new ContentValues();
 		values.put(NAME_DATE, date);
+		values.put(NAME_LOC, location);
+		values.put(NAME_SOUND, sound);
 		values.put(NAME_TEMP, temp);
 		values.put(NAME_CTEMP, rgbtemp);
 		values.put(NAME_LINT, intensity);
@@ -77,24 +81,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		return count;
 	}
 
-	//returns wanted reading from the table as an object
-	public Reading getReading(int id) {
-		SQLiteDatabase db = this.getReadableDatabase();
-
-		Cursor cursor = db.query(TABLE_VALUES, new String[] { KEY_ID,
-				NAME_DATE, NAME_TEMP, NAME_CTEMP, NAME_LINT }, KEY_ID + "=?",
-				new String[] { String.valueOf(id) }, null, null, null, null);
-		if (cursor != null) {
-			cursor.moveToFirst();
-		}
-		Reading reading = new Reading(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), cursor.getString(2), cursor.getString(3),
-				cursor.getString(4));
-
-		return reading;
-
-	}
 	
+	//Return a list of all stored readings
 	public ArrayList<Reading> getReadings() {
 		ArrayList<Reading> readings = new ArrayList<Reading>();
 		SQLiteDatabase db = this.getReadableDatabase();
@@ -103,7 +91,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	        do {
 	            readings.add(new Reading(Integer.parseInt(cursor.getString(0)),
 	        				cursor.getString(1), cursor.getString(2), cursor.getString(3),
-	        				cursor.getString(4)));
+	        				cursor.getString(4), cursor.getString(5), cursor.getString(6)));
 	        } while (cursor.moveToNext());
 	    }
 		return readings;
