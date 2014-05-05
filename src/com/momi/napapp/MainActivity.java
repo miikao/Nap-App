@@ -129,6 +129,7 @@ public class MainActivity extends Activity {
 
 					Log.d("Insert: ", "Inserting .."); 
 					mDbHelper.saveReadings(date, temp, rgbtemp, intensity);
+					Log.d("database output", mDbHelper.getReading(1).toString());
 					
 					uiToast("Values saved!");
 				}

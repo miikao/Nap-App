@@ -1,5 +1,7 @@
 package com.momi.napapp;
 
+import java.util.ArrayList;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -91,5 +93,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 		return reading;
 
+	}
+	
+	public ArrayList<Reading> getReadings() {
+		ArrayList<Reading> readings = new ArrayList<Reading>();
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.rawQuery("select * from " + TABLE_VALUES, null);
+		if (cursor.moveToFirst()) {
+	        do {
+	            readings.add(new Reading(Integer.parseInt(cursor.getString(0)),
+	        				cursor.getString(1), cursor.getString(2), cursor.getString(3),
+	        				cursor.getString(4)));
+	        } while (cursor.moveToNext());
+	    }
+		return readings;
 	}
 }

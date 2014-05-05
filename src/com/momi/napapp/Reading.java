@@ -52,5 +52,11 @@ public class Reading {
 	
 	public void setIntensity(String intensity){
 		this._intensity = intensity;
+	}
+
+	@Override
+	public String toString() {
+		return "Reading [_id=" + _id + ", _date=" + _date + ", _temp=" + _temp
+				+ ", _ctemp=" + _ctemp + ", _intensity=" + _intensity + "]";
 	};
 }

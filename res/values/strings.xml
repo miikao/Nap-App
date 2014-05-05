@@ -4,5 +4,6 @@
     <string name="app_name">Nap App</string>
 
     <item name="text_sounddb" type="id">DB</item>
-
+ 	<item name="rowsview" type="id"></item>
+ 	
 </resources>
