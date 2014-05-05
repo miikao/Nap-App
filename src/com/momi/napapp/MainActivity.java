@@ -63,6 +63,7 @@ public class MainActivity extends Activity {
 	String intensity;
 	String temp;
 	String rgbtemp;
+	String sound;
 	// no idea if this works
 	//String date = java.text.DateFormat.getDateTimeInstance().format(
 	//		Calendar.getInstance().getTime());
@@ -154,7 +155,9 @@ public class MainActivity extends Activity {
 				} else {
 
 					Log.d("Insert: ", "Inserting .."); 
-					mDbHelper.saveReadings(date, place, mSoundDB.toString(), temp, rgbtemp, intensity);
+					sound = mSoundDB.getText().toString();
+					Log.d("sound",sound);
+					mDbHelper.saveReadings(date, place, sound, temp, rgbtemp, intensity);
 					
 					
 					uiToast("Values saved!");

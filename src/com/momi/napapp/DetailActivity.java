@@ -22,7 +22,7 @@ public class DetailActivity extends Activity {
 		setContentView(R.layout.activity_detail);
 		
 		//tv = (TextView) findViewById(R.id.rowsview);
-		//Log.d("database", dbh.getReading(1).toString());
+		Log.d("database", dbh.getReadings().toString());
 		//tv.setText(dbh.getReadings().toString());
 		
 		TableLayout stk = (TableLayout) findViewById(R.id.table_main);
@@ -48,11 +48,15 @@ public class DetailActivity extends Activity {
         tv3.setTextColor(Color.WHITE);
         tbrow0.addView(tv3);
         
-        
         TextView tv4 = new TextView(this);
-        tv4.setText(" Location ");
+        tv4.setText(" Sound ");
         tv4.setTextColor(Color.WHITE);
         tbrow0.addView(tv4);
+        
+        TextView tv5 = new TextView(this);
+        tv5.setText(" Location ");
+        tv5.setTextColor(Color.WHITE);
+        tbrow0.addView(tv5);
         
         stk.addView(tbrow0);
         
@@ -82,6 +86,18 @@ public class DetailActivity extends Activity {
             t4v.setTextColor(Color.WHITE);
             t4v.setGravity(Gravity.CENTER);
             tbrow.addView(t4v);
+            
+            TextView t5v = new TextView(this);
+            t5v.setText(r.get_sound());
+            t5v.setTextColor(Color.WHITE);
+            t5v.setGravity(Gravity.CENTER);
+            tbrow.addView(t5v);
+            
+            TextView t6v = new TextView(this);
+            t6v.setText(r.get_location());
+            t6v.setTextColor(Color.WHITE);
+            t6v.setGravity(Gravity.CENTER);
+            tbrow.addView(t6v);
             
             stk.addView(tbrow);
 
