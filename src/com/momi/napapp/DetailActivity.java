@@ -29,7 +29,7 @@ public class DetailActivity extends Activity {
         TableRow tbrow0 = new TableRow(this);
         
         TextView tv0 = new TextView(this);
-        tv0.setText(" Sl.No ");
+        tv0.setText(" Date ");
         tv0.setTextColor(Color.WHITE);
         tbrow0.addView(tv0);
         
@@ -58,9 +58,9 @@ public class DetailActivity extends Activity {
         
         for (Reading r : dbh.getReadings() ) {
         	TableRow tbrow = new TableRow(this);
-            TextView t1v = new TextView(this);
-            
-            t1v.setText(Integer.toString(r.getID()));
+           
+        	TextView t1v = new TextView(this);   
+            t1v.setText(r._date);
             t1v.setTextColor(Color.WHITE);
             t1v.setGravity(Gravity.CENTER);
             tbrow.addView(t1v);
