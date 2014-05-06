@@ -1,5 +1,7 @@
 package com.momi.napapp;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -60,48 +62,51 @@ public class DetailActivity extends Activity {
         
         stk.addView(tbrow0);
         
-        for (Reading r : dbh.getReadings() ) {
-        	TableRow tbrow = new TableRow(this);
+        ArrayList<Reading> readings = dbh.getReadings();
+        if (!readings.isEmpty()) {
+        	for (Reading r : readings ) {
+        		TableRow tbrow = new TableRow(this);
            
-        	TextView t1v = new TextView(this);   
-            t1v.setText(r._date);
-            t1v.setTextColor(Color.WHITE);
-            t1v.setGravity(Gravity.CENTER);
-            tbrow.addView(t1v);
+        		TextView t1v = new TextView(this);   
+        		t1v.setText(r._date);
+        		t1v.setTextColor(Color.WHITE);
+        		t1v.setGravity(Gravity.CENTER);
+        		tbrow.addView(t1v);
             
-            TextView t2v = new TextView(this);
-            t2v.setText(r.getTemp());
-            t2v.setTextColor(Color.WHITE);
-            t2v.setGravity(Gravity.CENTER);
-            tbrow.addView(t2v);
+        		TextView t2v = new TextView(this);
+        		t2v.setText(r.getTemp());
+        		t2v.setTextColor(Color.WHITE);
+        		t2v.setGravity(Gravity.CENTER);
+        		tbrow.addView(t2v);
             
-            TextView t3v = new TextView(this);
-            t3v.setText(r.getCTemp());
-            t3v.setTextColor(Color.WHITE);
-            t3v.setGravity(Gravity.CENTER);
-            tbrow.addView(t3v);
+        		TextView t3v = new TextView(this);
+        		t3v.setText(r.getCTemp());
+        		t3v.setTextColor(Color.WHITE);
+        		t3v.setGravity(Gravity.CENTER);
+        		tbrow.addView(t3v);
             
-            TextView t4v = new TextView(this);
-            t4v.setText(r.getIntensity());
-            t4v.setTextColor(Color.WHITE);
-            t4v.setGravity(Gravity.CENTER);
-            tbrow.addView(t4v);
+        		TextView t4v = new TextView(this);
+        		t4v.setText(r.getIntensity());
+        		t4v.setTextColor(Color.WHITE);
+        		t4v.setGravity(Gravity.CENTER);
+        		tbrow.addView(t4v);
             
-            TextView t5v = new TextView(this);
-            t5v.setText(r.get_sound());
-            t5v.setTextColor(Color.WHITE);
-            t5v.setGravity(Gravity.CENTER);
-            tbrow.addView(t5v);
+        		TextView t5v = new TextView(this);
+        		t5v.setText(r.get_sound());
+        		t5v.setTextColor(Color.WHITE);
+        		t5v.setGravity(Gravity.CENTER);
+        		tbrow.addView(t5v);
             
-            TextView t6v = new TextView(this);
-            t6v.setText(r.get_location());
-            t6v.setTextColor(Color.WHITE);
-            t6v.setGravity(Gravity.CENTER);
-            tbrow.addView(t6v);
+        		TextView t6v = new TextView(this);
+        		t6v.setText(r.get_location());
+        		t6v.setTextColor(Color.WHITE);
+        		t6v.setGravity(Gravity.CENTER);
+        		tbrow.addView(t6v);
             
-            stk.addView(tbrow);
+        		stk.addView(tbrow);
 
-		}
+        	}
+        }
         
 	}
 
