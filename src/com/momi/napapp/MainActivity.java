@@ -43,6 +43,7 @@ public class MainActivity extends Activity {
 	
 	AlertDialog.Builder alert;
 	String place;
+	EditText input;
 	
 	private Runnable mUpdateTimer = new Runnable() { 
 		@Override
@@ -130,6 +131,16 @@ public class MainActivity extends Activity {
 				if (myDrone.isConnected) {
 					myDrone.measureTemperature();
 					myDrone.measureRGBC();
+					alert = new AlertDialog.Builder(MainActivity.this);
+					alert.setTitle("location");
+					alert.setMessage("set name of location");
+					input = new EditText(MainActivity.this);
+					alert.setView(input);
+					alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+						  place = input.getText().toString();
+						}
+					});
 					alert.show();
 				} else if (myDrone.isConnected && !myDrone.temperatureStatus) {
 
@@ -293,16 +304,7 @@ public class MainActivity extends Activity {
 		//Causes the Runnable r to be added to the message queue, to be run after the specified amount of time elapses.
 		mHandler.postDelayed(mUpdateTimer, 200L);
 		mSoundPlay.a();
-		alert = new AlertDialog.Builder(this);
-		alert.setTitle("location");
-		alert.setMessage("set name of location");
-		final EditText input = new EditText(this);
-		alert.setView(input);
-		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int whichButton) {
-			  place = input.getText().toString();
-			}
-		});
+		
 	}
 
 	@Override
